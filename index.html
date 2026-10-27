@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoJourney - Smart Car Buying & Reliability Intelligence</title>
+    <meta name="description" content="Comprehensive car purchase planner tracking mechanical failure risks, local inventory, market pricing, 5-year total ownership costs, and real-world community negotiated deals." />
+    <meta property="og:title" content="AutoJourney - Smart Car Buying & Reliability Intelligence" />
+    <meta property="og:description" content="Comprehensive car purchase planner tracking mechanical failure risks, local inventory, market pricing, 5-year total ownership costs, and real-world community negotiated deals." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      (function() {
+        // Suppress HMR WebSocket errors as required by AI Studio environment constraints
+        function isViteHmrError(err, filename, message) {
+          var str = String(err && (err.message || err.stack || err.reason) || message || filename || err || '');
+          var fileStr = String(filename || (err && err.filename) || '');
+          return (
+            str.indexOf('WebSocket') !== -1 ||
+            str.indexOf('vite:ws') !== -1 ||
+            str.indexOf('@vite/client') !== -1 ||
+            fileStr.indexOf('@vite/client') !== -1 ||
+            fileStr.indexOf('vite') !== -1
+          );
+        }
+
+        function errorHandler(event) {
+          var filename = event.filename || (event.error && event.error.fileName) || '';
+          var message = event.message || (event.error && event.error.message) || '';
+          if (isViteHmrError(event.error, filename, message)) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+            return true;
+          }
+        }
+
+        window.addEventListener('error', errorHandler, true);
+        window.addEventListener('error', errorHandler, false);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (isViteHmrError(event.reason, '', '')) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (typeof event.stopImmediatePropagation === 'function') {
+              event.stopImmediatePropagation();
+            }
+          }
+        }, true);
+
+        var prevOnError = window.onerror;
+        window.onerror = function(msg, url, line, col, error) {
+          if (isViteHmrError(error, url, msg)) {
+            return true;
+          }
+          if (typeof prevOnError === 'function') {
+            return prevOnError.apply(this, arguments);
+          }
+        };
+
+        if (typeof window.WebSocket !== 'undefined') {
+          var OrigWebSocket = window.WebSocket;
+          window.WebSocket = function(url, protocols) {
+            var ws = new OrigWebSocket(url, protocols);
+            if (
+              protocols === 'vite-hmr' ||
+              (typeof url === 'string' && (url.indexOf('vite-hmr') !== -1 || url.indexOf('/@vite') !== -1))
+            ) {
+              ws.addEventListener('error', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                if (typeof e.stopImmediatePropagation === 'function') {
+                  e.stopImmediatePropagation();
+                }
+              }, true);
+            }
+            return ws;
+          };
+          window.WebSocket.prototype = OrigWebSocket.prototype;
+          window.WebSocket.CONNECTING = OrigWebSocket.CONNECTING;
+          window.WebSocket.OPEN = OrigWebSocket.OPEN;
+          window.WebSocket.CLOSING = OrigWebSocket.CLOSING;
+          window.WebSocket.CLOSED = OrigWebSocket.CLOSED;
+        }
+      })();
+    </script>
+  </head>
+  <body class="bg-slate-950 text-slate-100 antialiased font-sans selection:bg-amber-500/20 selection:text-amber-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
